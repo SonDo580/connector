@@ -1,0 +1,42 @@
+export enum FamilyRelationship {
+  Father = 'Father',
+  Son = 'Son',
+  Brother = 'Brother',
+  Uncle = 'Uncle',
+  Nephew = 'Nephew',
+  Grandfather = 'Grandfather',
+  Grandson = 'Grandson',
+  Stepbrother = 'Stepbrother',
+  Stepfather = 'Stepfather',
+  Stepson = 'Stepson',
+  BrotherInLaw = 'Brother-in-law',
+  FatherInLaw = 'Father-in-law',
+  SonInLaw = 'Son-in-law',
+
+  Mother = 'Mother',
+  Daughter = 'Daughter',
+  Sister = 'Sister',
+  Aunt = 'Aunt',
+  Niece = 'Niece',
+  Grandmother = 'Grandmother',
+  Granddaughter = 'Granddaughter',
+  Stepsister = 'Stepsister',
+  Stepmother = 'Stepmother',
+  Stepdaughter = 'Stepdaughter',
+  SisterInLaw = 'Sister-in-law',
+  MotherInLaw = 'Mother-in-law',
+  DaughterInLaw = 'Daughter-in-law',
+
+  Cousin = 'Cousin',
+}
+
+export enum RelationshipStatus {
+  SINGLE = 'Single',
+  DATING = 'Dating',
+  ENGAGED = 'Engaged',
+  MARRIED = 'Married',
+  SEPARATED = 'Separated',
+  DIVORCED = 'Divorced',
+  COMPLICATED = 'Complicated',
+  OPEN = 'Open',
+}
