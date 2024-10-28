@@ -2,7 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { AuthType, Gender, MODEL_NAME, Role } from 'src/common/constants';
 import { USER_INFO_CONSTRAINT } from 'src/common/constants/constraints';
-import { FamilyRelationship, RelationshipStatus } from 'src/common/constants/relationships';
+import {
+  FamilyRelationship,
+  RelationshipStatus,
+} from 'src/common/constants/relationships';
 import { ObjectId } from 'src/common/types';
 
 export type UserDocument = HydratedDocument<User>;
@@ -33,7 +36,7 @@ export class User {
   authType: AuthType;
 
   // Identity information
-  @Prop({ index: true, required: true })
+  @Prop({ unique: true, required: true })
   email: string;
 
   @Prop({ unique: true })
@@ -86,7 +89,7 @@ export class User {
   @Prop([
     {
       user: { type: ObjectId, ref: MODEL_NAME.USER },
-      relationship: { enum: FamilyRelationship },
+      relationship: { enum: Object.values(FamilyRelationship) },
     },
   ])
   familyMembers: FamilyMember[];
@@ -111,3 +114,10 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+UserSchema.virtual('fullName').get(function () {
+  if (this.firstName || this.lastName) {
+    return `${this.firstName} ${this.lastName}`.trim();
+  }
+  return 'Anonymous User';
+});
