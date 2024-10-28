@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import { RegisterRequestBody } from './requests/register.request';
+import { RegisterDTO } from './requests/register.request';
 import { AuthService } from './auth.service';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -10,8 +10,8 @@ export class AuthController {
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
-  async register(@Body() body: RegisterRequestBody) {
-    const result = await this.authService.register(body);
+  async register(@Body() dto: RegisterDTO) {
+    const result = await this.authService.register(dto);
     return result;
   }
 }

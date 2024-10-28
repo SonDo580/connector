@@ -39,7 +39,7 @@ export class User {
   @Prop({ unique: true, required: true })
   email: string;
 
-  @Prop({ unique: true })
+  @Prop({ unique: true, sparse: true })
   username?: string;
 
   @Prop()

@@ -7,6 +7,16 @@ export enum AuthType {
   GOOGLE = 'google',
 }
 
+export enum EmailType {
+  COMPLETE_REGISTER = 'complete-register',
+  RESET_PASSWORD = 'reset-password',
+}
+
+export enum EmailTemplateName {
+  COMPLETE_REGISTER = 'complete-register',
+  RESET_PASSWORD = 'reset-password',
+}
+
 export enum Role {
   USER = 'user',
   ADMIN = 'admin',

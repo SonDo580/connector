@@ -5,6 +5,8 @@ dotenv.config();
 const {
   PORT,
   NODE_ENV,
+  CLIENT_URL,
+
   MONGODB_URI,
 
   ACCESS_SECRET,
@@ -16,11 +18,13 @@ const {
 
   SENDGRID_API_KEY,
   MAIL_SENDER,
+  TEMPLATE_PATH,
 } = process.env;
 
 export const GENERAL_CONFIG = {
   PORT: parseInt(PORT),
   NODE_ENV,
+  CLIENT_URL,
 };
 
 export const DATABASE_CONFIG = { MONGODB_URI };
@@ -37,4 +41,5 @@ export const JWT_CONFIG = {
 export const MAIL_CONFIG = {
   API_KEY: SENDGRID_API_KEY,
   SENDER: MAIL_SENDER,
+  TEMPLATE_PATH,
 };
