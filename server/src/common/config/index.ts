@@ -6,19 +6,24 @@ const {
   PORT,
   NODE_ENV,
   MONGODB_URI,
+
   ACCESS_SECRET,
   ACCESS_EXPIRE_IN,
   REFRESH_SECRET,
   REFRESH_EXPIRE_IN,
   MAIL_SECRET,
   MAIL_EXPIRE_IN,
+
+  SENDGRID_API_KEY,
+  MAIL_SENDER,
 } = process.env;
 
 export const GENERAL_CONFIG = {
   PORT: parseInt(PORT),
   NODE_ENV,
-  MONGODB_URI,
 };
+
+export const DATABASE_CONFIG = { MONGODB_URI };
 
 export const JWT_CONFIG = {
   ACCESS_SECRET,
@@ -27,4 +32,9 @@ export const JWT_CONFIG = {
   REFRESH_EXPIRE_IN,
   MAIL_SECRET,
   MAIL_EXPIRE_IN,
+};
+
+export const MAIL_CONFIG = {
+  API_KEY: SENDGRID_API_KEY,
+  SENDER: MAIL_SENDER,
 };
