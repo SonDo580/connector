@@ -1,7 +1,6 @@
 # BE
 1. **In progress**
 
-- Register
 - SendGrid: create template & send email
 - Complete register
 
@@ -10,11 +9,11 @@
 **Common**
 
 - AuthGuard, CheckRoles, Public
-- Setup Swagger
 - ApiResponse (factory + Schema)
 - Exception Filter
-- Validation Pipe
-- Logging?
+- Validation Pipe - exception factory
+- Common List Request Queries 
+- Study: Validation doc (mapped type & validate arrays) 
 
 **Auth**
 
@@ -25,7 +24,6 @@
 - Refresh token?
 
 **User**
-- Common List Request Queries
 - Get User List (for admin)
 - Get User Details (public info of other, full self info) -> public fields
 - Update info
