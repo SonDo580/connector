@@ -8,6 +8,11 @@ import { GENERAL_CONFIG, JWT_CONFIG, MAIL_CONFIG } from 'src/common/config';
 import { EmailTemplateName, EmailType } from 'src/common/constants';
 import { ErrorCode } from 'src/common/constants/error-code';
 
+export interface MailPayload {
+  email: string;
+  type: EmailType;
+}
+
 @Injectable()
 export class MailService {
   private readonly logger = new Logger(MailService.name);
@@ -16,7 +21,7 @@ export class MailService {
     sgMail.setApiKey(MAIL_CONFIG.API_KEY);
   }
 
-  private async sendEmailWithTemplate({
+  private async sendEmailWithTemplate<T>({
     to,
     subject,
     templateName,
@@ -25,7 +30,7 @@ export class MailService {
     to: string | string[];
     subject: string;
     templateName: EmailTemplateName;
-    context: any;
+    context: T;
   }) {
     const template = await this.getTemplate(templateName);
     const htmlContent = this.getHtmlContent(template, context);
@@ -61,9 +66,9 @@ export class MailService {
     }
   }
 
-  private getHtmlContent(
-    template: HandlebarsTemplateDelegate<any>,
-    context: any,
+  private getHtmlContent<T>(
+    template: HandlebarsTemplateDelegate<T>,
+    context: T,
   ) {
     try {
       return template(context);
@@ -74,11 +79,12 @@ export class MailService {
   }
 
   async sendCompleteRegisterEmail(email: string) {
-    const payload = { email, type: EmailType.COMPLETE_REGISTER };
+    const payload: MailPayload = { email, type: EmailType.COMPLETE_REGISTER };
     const token = await this.jwtService.signAsync(payload, {
       secret: JWT_CONFIG.MAIL_SECRET,
       expiresIn: JWT_CONFIG.MAIL_EXPIRE_IN,
     });
+
     const verificationUrl = `${GENERAL_CONFIG.CLIENT_URL}/auth/complete-register?token=${token}`;
 
     await this.sendEmailWithTemplate({
